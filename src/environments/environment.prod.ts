@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'https://testlistngexpressmongo.herokuapp.com/',
+  apiUrl: 'https://testlistngexpressmongo.herokuapp.com',
   production: true
 };
