@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TableItemInfo} from 'src/app/shared/interfaces';
 
 @Component({
@@ -8,7 +8,7 @@ import {TableItemInfo} from 'src/app/shared/interfaces';
 })
 export class ItemInfoComponent {
 
-  @Input() itemDescription: TableItemInfo[]
+  @Input() itemDescription: TableItemInfo[] = []
   displayedColumns: string[] = ['key', 'value'];
 
   constructor () { }

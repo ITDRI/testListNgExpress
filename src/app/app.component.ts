@@ -28,7 +28,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.drawItemList()
   }
 
-  showItemInfo($event) {
+  drawItemList() {
+    this.itemsSub = this.db$.getAllItems().subscribe(items => {
+      this.itemList = items
+    },
+      err => this.error = err
+    )
+  }
+
+  showItemInfo($event: number) {
     this.itemInfoSub = this.db$.getItemInfo($event).subscribe(data => {
       const itemInfoFactory = this.resolver.resolveComponentFactory(ItemInfoComponent)
       this.itemInfoContainer.clear()
@@ -39,13 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
     )
   }
 
-  drawItemList() {
-    this.itemsSub = this.db$.getAllItems().subscribe(items => {
-      this.itemList = items
-    },
-      err => this.error = err
-    )
-  }
 
   ngOnDestroy() {
     if (this.itemsSub) this.itemsSub.unsubscribe()

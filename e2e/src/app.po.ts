@@ -1,11 +1,24 @@
-import { browser, by, element } from 'protractor';
+import {$, $$, browser, by, element, WebElement} from 'protractor';
 
 export class AppPage {
   async navigateTo(): Promise<unknown> {
     return browser.get(browser.baseUrl);
   }
 
-  async getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText();
+  async getRootElement(): Promise<WebElement> {
+    return $$('main mat-tree mat-tree-node').first()
   }
+
+  async getExpandButton(): Promise<WebElement> {
+    return $$('main mat-tree mat-tree-node button').first()
+  }
+
+  async getSpinner(): Promise<WebElement> {
+    return $('.spinner');
+  }
+
+  async getInfoComponent(): Promise<WebElement> {
+    return $('app-item-info table');
+  }
+
 }

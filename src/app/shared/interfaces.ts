@@ -24,7 +24,7 @@ export interface Dictionary {
 }
 
 export interface TableItemInfo {
-  key: number
+  key: string
   value: string
   mappedKey: string
 }

@@ -25,7 +25,7 @@ export class DbService {
   getAllItems(): Observable<Item[]> {
     return this.http$.get(`${environment.apiUrl}/items`)
       .pipe(
-        map(e => this.preparePlainDataToTree(e))
+        map((e: Item[]) => this.preparePlainDataToTree(e))
       )
   }
 
@@ -35,7 +35,7 @@ export class DbService {
     )
   }
 
-  preparePlainDataToTree(items): Item[] {
+  preparePlainDataToTree(items: Item[]): Item[] {
     const tree = []
     const childrensToParent = {}
 
@@ -66,9 +66,9 @@ export class DbService {
       .filter(e => !e[0].startsWith('_'))
       .reduce((res, e) => {
         const item = {}
-        item['key'] = e[0]
-        item['value'] = e[1]
-        item['mappedKey'] = this.dictionary[e[0]]
+        item['key'] = String(e[0])
+        item['value'] = String(e[1])
+        item['mappedKey'] = String(this.dictionary[e[0]])
         res.push(item)
         return res
       }, [])
